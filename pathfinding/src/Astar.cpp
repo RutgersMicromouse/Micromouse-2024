@@ -61,298 +61,55 @@ float get_heuristic(point x) {
     return Kh * sqrt(length * length + height * height);
 }
 
-void realturn(uint8_t direction){
-    if(redieeem.direction == N){
-        if(direction == N){
+void executeAction(int relativeDirection) {
+    switch (relativeDirection) {
+        case 0: // Forward
             API::moveForwardHalf();
-        }
-        else if(direction == S){
-            API::turnRight();
-            API::turnRight();
-            API::moveForwardHalf();
-        }
-        else if(direction == E){
-            API::turnRight();
-            API::moveForwardHalf();
-        }
-        else if(direction == W){
-            API::turnLeft();
-            API::moveForwardHalf();
-        }
-        else if(direction == NW){
-            API::turnLeft45();
-            API::moveForwardHalf();
-        }
-        else if(direction == NE){
+            break;
+        case 1: // Right 45°
             API::turnRight45();
             API::moveForwardHalf();
-        }
-        else if(direction == SW){
-            API::turnLeft();
-            API::turnLeft45();
+            break;
+        case 2: // Right 90°
+            API::turnRight();
             API::moveForwardHalf();
-        }
-        else if(direction == SE){
+            break;
+        case 3: // Right 135°
             API::turnRight();
             API::turnRight45();
             API::moveForwardHalf();
-        }
+            break;
+        case 4: // Turn around (180°)
+            API::turnRight();
+            API::turnRight();
+            API::moveForwardHalf();
+            break;
+        case 5: // Left 135°
+            API::turnLeft();
+            API::turnLeft45();
+            API::moveForwardHalf();
+            break;
+        case 6: // Left 90°
+            API::turnLeft();
+            API::moveForwardHalf();
+            break;
+        case 7: // Left 45°
+            API::turnLeft45();
+            API::moveForwardHalf();
+            break;
+        default:
+            exit(1); // Invalid relative direction
     }
-    else if(redieeem.direction == W){
-        if(direction == W){
-            API::moveForwardHalf();
-        }
-        else if(direction == E){
-            API::turnRight();
-            API::turnRight();
-            API::moveForwardHalf();
-        }
-        else if(direction == N){
-            API::turnRight();
-            API::moveForwardHalf();
-        }
-        else if(direction == S){
-            API::turnLeft();
-            API::moveForwardHalf();
-        }
-        else if(direction == SW){
-            API::turnLeft45();
-            API::moveForwardHalf();
-        }
-        else if(direction == NW){
-            API::turnRight45();
-            API::moveForwardHalf();
-        }
-        else if(direction == SE){
-            API::turnLeft();
-            API::turnLeft45();
-            API::moveForwardHalf();
-        }
-        else if(direction == NE){
-            API::turnRight();
-            API::turnRight45();
-            API::moveForwardHalf();
-        }
-    }
-    else if(redieeem.direction == S){
-        if(direction == S){
-            API::moveForwardHalf();
-        }
-        else if(direction == N){
-            API::turnRight();
-            API::turnRight();
-            API::moveForwardHalf();
-        }
-        else if(direction == W){
-            API::turnRight();
-            API::moveForwardHalf();
-        }
-        else if(direction == E){
-            API::turnLeft();
-            API::moveForwardHalf();
-        }
-        else if(direction == SE){
-            API::turnLeft45();
-            API::moveForwardHalf();
-        }
-        else if(direction == SW){
-            API::turnRight45();
-            API::moveForwardHalf();
-        }
-        else if(direction == NE){
-            API::turnLeft();
-            API::turnLeft45();
-            API::moveForwardHalf();
-        }
-        else if(direction == NW){
-            API::turnRight();
-            API::turnRight45();
-            API::moveForwardHalf();
-        }
-    }
-    else if(redieeem.direction == E){
-        if(direction == E){
-            API::moveForwardHalf();
-        }
-        else if(direction == W){
-            API::turnRight();
-            API::turnRight();
-            API::moveForwardHalf();
-        }
-        else if(direction == S){
-            API::turnRight();
-            API::moveForwardHalf();
-        }
-        else if(direction == N){
-            API::turnLeft();
-            API::moveForwardHalf();
-        }
-        else if(direction == NE){
-            API::turnLeft45();
-            API::moveForwardHalf();
-        }
-        else if(direction == SE){
-            API::turnRight45();
-            API::moveForwardHalf();
-        }
-        else if(direction == NW){
-            API::turnLeft();
-            API::turnLeft45();
-            API::moveForwardHalf();
-        }
-        else if(direction == SW){
-            API::turnRight();
-            API::turnRight45();
-            API::moveForwardHalf();
-        }
-    }
-    else if(redieeem.direction == NE){
-        if(direction == NE){
-            API::moveForwardHalf();
-        }
-        else if(direction == SW){
-            API::turnRight();
-            API::turnRight();
-            API::moveForwardHalf();
-        }
-        else if(direction == SE){
-            API::turnRight();
-            API::moveForwardHalf();
-        }
-        else if(direction == NW){
-            API::turnLeft();
-            API::moveForwardHalf();
-        }
-        else if(direction == N){
-            API::turnLeft45();
-            API::moveForwardHalf();
-        }
-        else if(direction == E){
-            API::turnRight45();
-            API::moveForwardHalf();
-        }
-        else if(direction == W){
-            API::turnLeft();
-            API::turnLeft45();
-            API::moveForwardHalf();
-        }
-        else if(direction == S){
-            API::turnRight();
-            API::turnRight45();
-            API::moveForwardHalf();
-        }
-    }
-    else if(redieeem.direction == NW){
-        if(direction == NW){
-            API::moveForwardHalf();
-        }
-        else if(direction == SE){
-            API::turnRight();
-            API::turnRight();
-            API::moveForwardHalf();
-        }
-        else if(direction == NE){
-            API::turnRight();
-            API::moveForwardHalf();
-        }
-        else if(direction == SW){
-            API::turnLeft();
-            API::moveForwardHalf();
-        }
-        else if(direction == W){
-            API::turnLeft45();
-            API::moveForwardHalf();
-        }
-        else if(direction == N){
-            API::turnRight45();
-            API::moveForwardHalf();
-        }
-        else if(direction == S){
-            API::turnLeft();
-            API::turnLeft45();
-            API::moveForwardHalf();
-        }
-        else if(direction == E){
-            API::turnRight();
-            API::turnRight45();
-            API::moveForwardHalf();
-        }
-    }
-    else if(redieeem.direction == SW){
-        if(direction == SW){
-            API::moveForwardHalf();
-        }
-        else if(direction == NE){
-            API::turnRight();
-            API::turnRight();
-            API::moveForwardHalf();
-        }
-        else if(direction == NW){
-            API::turnRight();
-            API::moveForwardHalf();
-        }
-        else if(direction == SE){
-            API::turnLeft();
-            API::moveForwardHalf();
-        }
-        else if(direction == S){
-            API::turnLeft45();
-            API::moveForwardHalf();
-        }
-        else if(direction == W){
-            API::turnRight45();
-            API::moveForwardHalf();
-        }
-        else if(direction == E){
-            API::turnLeft();
-            API::turnLeft45();
-            API::moveForwardHalf();
-        }
-        else if(direction == N){
-            API::turnRight();
-            API::turnRight45();
-            API::moveForwardHalf();
-        }
-    }
-    else if(redieeem.direction == SE){
-        if(direction == SE){
-            API::moveForwardHalf();
-        }
-        else if(direction == NW){
-            API::turnRight();
-            API::turnRight();
-            API::moveForwardHalf();
-        }
-        else if(direction == SW){
-            API::turnRight();
-            API::moveForwardHalf();
-        }
-        else if(direction == NE){
-            API::turnLeft();
-            API::moveForwardHalf();
-        }
-        else if(direction == E){
-            API::turnLeft45();
-            API::moveForwardHalf();
-        }
-        else if(direction == S){
-            API::turnRight45();
-            API::moveForwardHalf();
-        }
-        else if(direction == N){
-            API::turnLeft();
-            API::turnLeft45();
-            API::moveForwardHalf();
-        }
-        else if(direction == W){
-            API::turnRight();
-            API::turnRight45();
-            API::moveForwardHalf();
-        }
-    }
-    else{
-        exit(1);
-    }
+}
+
+void realturn(uint8_t direction) {
+    // Compute the relative direction (0-7)
+    int relativeDirection = (direction - redieeem.direction + 8) % 8;
+
+    // Execute the corresponding action
+    executeAction(relativeDirection);
+
+    // Update the current direction
     redieeem.direction = direction;
 }
 
@@ -372,6 +129,7 @@ void Astar(uint8_t x, uint8_t y) {
         meta_data point = queue.top();
         nodes_explored++;
         queue.pop();
+        if(point.curr.x == destination.x && point.curr.y == destination.y) break;
         x = point.curr.x;
         y = point.curr.y;
         API::setColor(x/2,y/2,'y');

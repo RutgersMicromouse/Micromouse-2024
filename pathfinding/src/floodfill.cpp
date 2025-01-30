@@ -1,6 +1,7 @@
 #include "../include/floodfill.h"
 #include "../include/API.h"
 #include<queue>
+#include<stack>
 #include<cstdio>
 
 
@@ -63,8 +64,8 @@ static bool haswestwall(point p) {
 
 void reflood() {
     std::queue<point> myqueue;
+    // std::stack<point> myqueue;
     myqueue.push(dest);
-
     // Reset weights except for blocked cells
     for (int i = 0; i < 33; i++) {
         for (int j = 0; j < 33; j++) {
@@ -78,6 +79,7 @@ void reflood() {
 
     while (!myqueue.empty()) {
         point temp = myqueue.front();
+        // point temp = myqueue.top();
         myqueue.pop();
 
         // Look at neighbors
@@ -100,10 +102,6 @@ void reflood() {
     }
 
     fill_maze();
-    // char buf[50];
-    // snprintf(buf,sizeof(buf),"../maze%d.txt",i++);
-    // print_to_file(buf);
-    // fprintf(stderr, "Reflood %d complete.\n",i - 1);
 }
 
 
@@ -366,6 +364,8 @@ void floodfill() {
         
         setwalls(mouse);
         set_visited(mouse.location);
+THING:
+
         float max_weight = INFINITY;
         char dec_direction;
         API::setColor(mouse.location.x/2,mouse.location.y/2,'g');
@@ -398,6 +398,7 @@ void floodfill() {
         }
         if(max_weight != maze[mouse.location.x][mouse.location.y].weight - 1){
             reflood();
+            goto THING;
         }
         else{
             realturn(dec_direction);
