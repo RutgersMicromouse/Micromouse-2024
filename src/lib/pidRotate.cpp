@@ -44,6 +44,7 @@ void turnTo(char direction) {
 
     double sampleTime = micros();
     double sampleAngle = angle();
+    
     while(abs(newError) > 1.5) {
         // stall detection
         if(micros() > sampleTime + 50e3){

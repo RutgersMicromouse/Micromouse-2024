@@ -43,4 +43,5 @@ void motorSetup(){
   pinMode(AIN2, OUTPUT);
   pinMode(PWMA, OUTPUT);
   digitalWrite(STBY, HIGH);
+  
 }

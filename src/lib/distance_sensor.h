@@ -1,7 +1,7 @@
 #ifndef distance_sensor
 #define distance_sensor 
-#define sensorPin1 21
-#define sensorPin2 23
+#define sensorPin1 15
+#define sensorPin2 16
 #include <Wire.h>
 #include <Arduino.h>
 #include <VL53L1X.h>

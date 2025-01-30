@@ -36,9 +36,9 @@ void sensorInit() {
         sensors[i].setTimeout(500);
         if (!sensors[i].init())
         {
-        Serial.print("Failed to detect and initialize sensor ");
-        Serial.println(i);
-        while (1);
+            Serial.print("Failed to detect and initialize sensor ");
+            Serial.println(i);
+            while (1);
         }
 
         // Each sensor must have its address changed to a unique value other than
