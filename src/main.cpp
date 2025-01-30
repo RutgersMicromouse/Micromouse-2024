@@ -1,9 +1,11 @@
 #include <Arduino.h>
 
 IntervalTimer myTimer;  // Create an IntervalTimer object
+int16_t lsensor, rsensor;
 
 void timerISR() {
-    Serial.printf("Hello %d\n",micros());  // Print Hello every time the interrupt triggers
+    lsensor = pulseIn(21,HIGH);
+    rsensor = pulseIn(23,HIGH);
 }
 
 void setup() {
@@ -16,4 +18,5 @@ void setup() {
 
 void loop() {
     // Nothing needed here, as the timer interrupt handles printing
+    Serial.printf("%d %d\n",lsensor,rsensor);
 }
