@@ -34,7 +34,8 @@ typedef struct {
     point curr;
     point parent;
     uint8_t direction;
-    float weight;
+    float g_weight;
+    float h_weight;
 } meta_data;
 typedef struct{
     point location;
@@ -45,7 +46,7 @@ astar_mouse redieeem;
 
 struct Compare {
     bool operator()(const meta_data& a, const meta_data& b) {
-        return a.weight > b.weight; // Min-queue
+        return (a.g_weight + a.h_weight) >æ (b.g_weight + a.h_weight); // Min-queue
     }
 };
 
@@ -120,7 +121,14 @@ void Astar(uint8_t x, uint8_t y) {
     redieeem.direction = mouse.direction;
     destination.x = x;
     destination.y = y;
-    meta_data start = {{1, 1}, {1, 1}, static_cast<uint8_t>(100), 0.0};
+    /*
+    point curr;
+    point parent;
+    uint8_t direction;
+    float g_weight;
+    float h_weight;
+    */
+    meta_data start = {{1, 1}, {1, 1}, static_cast<uint8_t>(100), 0.0,0.0};
     queue.push(start);
     map[start.curr] = start;
     prev_direct = N;
@@ -139,14 +147,15 @@ void Astar(uint8_t x, uint8_t y) {
                 meta_data neighbor;
                 neighbor.curr = {static_cast<uint8_t>(nx), static_cast<uint8_t>(ny)};
                 neighbor.parent = point.curr;
-                neighbor.weight = point.weight + 0.5 + get_heuristic(neighbor.curr);
+                neighbor.g_weight = point.g_weight + 0.5;
+                neighbor.h_weight = get_heuristic(neighbor.curr);
                 neighbor.direction = dir;
 
                 if(neighbor.direction != point.direction){
-                    neighbor.weight += 5;
+                    neighbor.g_weight += 1;
                 }
 
-                if (map.find(neighbor.curr) == map.end() || neighbor.weight < map[neighbor.curr].weight) {
+                if (map.find(neighbor.curr) == map.end() || neighbor.g_weight < map[neighbor.curr].g_weight) {
                     map[neighbor.curr] = neighbor;
                     queue.push(neighbor);
                 }

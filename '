@@ -1,5 +1,0 @@
-pathfinding/output/main
-pathfinding/src/*.d
-pathfinding/src/*.o
-testmazes/
-.DS_Store

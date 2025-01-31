@@ -4,3 +4,4 @@ pathfinding/src/*.o
 testmazes/
 .DS_Store
 pathfinding/testmazes/
+.vscode/
