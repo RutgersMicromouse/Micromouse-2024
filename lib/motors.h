@@ -1,5 +1,4 @@
-#ifndef motors_h
-#define motors_h
+#pragma once
 
 
 #include<Encoder.h>
@@ -12,13 +11,10 @@
 #define AIN2 5
 #define PWMA 4
 
+
 extern Encoder encLeft;
 extern Encoder encRight;
-
 
 void setLeftPWM(int PWM);
 void setRightPWM(int PWM);
 void motorSetup();
-
-
-#endif

@@ -1,22 +1,19 @@
-#include <Arduino.h>
-
-IntervalTimer myTimer;  // Create an IntervalTimer object
-int16_t lsensor, rsensor;
-
-void timerISR() {
-    lsensor = pulseIn(21,HIGH);
-    rsensor = pulseIn(23,HIGH);
-}
-
+#include "../lib/int_handlers.h"
+#include "../lib/sensors_i2c.h"
+#include "../lib/motors.h"
+#include "../lib/maze_algo.h"
+IntervalTimer myTimer;
+static char curr_dir = 'n';
+static bool start = true;
 void setup() {
     Serial.begin(115200);  // Start serial communication
-    while (!Serial) {
-        ;  // Wait for serial monitor to open (Teensy-specific)
-    }
-    myTimer.begin(timerISR, 1000);  // Set up timer to trigger every 1,000,000 microseconds (1 second)
+    init_tof();
+    init_imu();
+    motorSetup();
+    myTimer.begin(get_readings, interrupt_interval);  // Set up timer to trigger every 1,000,000 microseconds (1 second)
 }
 
-void loop() {
-    // Nothing needed here, as the timer interrupt handles printing
-    Serial.printf("%d %d\n",lsensor,rsensor);
+void loop()
+{      
+
 }
