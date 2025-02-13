@@ -11,8 +11,11 @@
 
 
 VL53L1X sensor;
-int modePin = 12;  // LED connected to digital pin 13
-int val = 0;      // variable to store the read value
+int mazeMode = 21;
+int labMode = 20;
+int fireMode = 17;
+
+int valOfMazeMode, valOfLabMode, valOfFireMode;
 
 
 void setup()
@@ -22,21 +25,28 @@ void setup()
   sensorInit();
   motorSetup();
   delay(500);
-  pinMode(LED_BUILTIN, OUTPUT);
+//  pinMode(LED_BUILTIN, OUTPUT);
   delay(500);
-  digitalWrite(LED_BUILTIN, HIGH);
+  // digitalWrite(LED_BUILTIN, HIGH);
   setForwardPWM(50);
   delay(500);
   initialize();
   Serial.println("Hello world");
 
-  val = digitalRead(modePin);   // read the input pin
+  valOfMazeMode = digitalRead(mazeMode);
+  valOfLabMode = digitalRead(labMode);
+  valOfFireMode = digitalRead(fireMode);
 
-  if(val == 0) {
+
+
+  if(valOfMazeMode == 1 && valOfFireMode == 0 && valOfLabMode == 0) {
     runMaze('c');
-  } else {
-    digitalWrite(LED_BUILTIN, LOW);
+  } else if(valOfMazeMode == 0 && valOfFireMode == 0 && valOfLabMode == 1) {
     labyrinth();
+  } else if(valOfMazeMode == 0 && valOfFireMode == 1 && valOfLabMode == 0) {
+    //firefighting();
+  } else {
+    return;
   }
 
   
