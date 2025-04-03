@@ -1,5 +1,5 @@
 #include <Wire.h>
-
+#include <Arduino.h>
 #include "../lib/IMU/imu.h"
 #include "../lib/distanceSensor/distance_sensor.h"
 #include "../lib/Motors/motors.h"
@@ -12,11 +12,6 @@
 
 
 VL53L1X sensor;
-int mazeMode = 21;
-int labMode = 20;
-int fireMode = 17;
-
-int valOfMazeMode, valOfLabMode, valOfFireMode;
 
 int PIN = 13;
 
@@ -39,11 +34,9 @@ void setup()
 //   valOfLabMode = digitalRead(labMode);
 //   valOfFireMode = digitalRead(fireMode);
 
-Serial.begin(9600);
+
+Serial.begin(115200);
 pinMode(PIN, OUTPUT);
-
-
-
 
 
 //   if(valOfMazeMode == 1 && valOfFireMode == 0 && valOfLabMode == 0) {
@@ -62,14 +55,12 @@ pinMode(PIN, OUTPUT);
 
 void loop()
 {
-  // delay(500);
-  
-  // Serial.println(digitalRead(modePin));
-  // Serial.println(digitalRead(memory_button));
-  // Serial.println(digitalRead(memory_switch));
 
   digitalWrite(PIN, HIGH);
-  delay(500);
+  delay(1500);
   digitalWrite(PIN, LOW);
-  delay(500);
+  delay(1500);
+  Serial.println("GAY");
+
+
 }
