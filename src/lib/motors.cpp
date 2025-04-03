@@ -9,13 +9,12 @@ Encoder encLeft(10,11);
 
 void setLeftPWM(int PWM) {
   if(PWM > 0) {
-    digitalWrite(BIN1, LOW);
-    digitalWrite(BIN2, HIGH);
-    analogWrite(PWMB, PWM);
-  } else {
     digitalWrite(BIN1, HIGH);
     digitalWrite(BIN2, LOW);
-    
+    analogWrite(PWMB, PWM);
+  } else {
+    digitalWrite(BIN1, LOW);
+    digitalWrite(BIN2, HIGH);
     analogWrite(PWMB, -PWM);
   }
 }
@@ -23,12 +22,12 @@ void setLeftPWM(int PWM) {
 void setRightPWM(int PWM){
 
   if(PWM > 0) {
-    digitalWrite(AIN1, LOW);
-    digitalWrite(AIN2, HIGH);
-    analogWrite(PWMA, PWM);
-  } else {
     digitalWrite(AIN1, HIGH);
     digitalWrite(AIN2, LOW);
+    analogWrite(PWMA, PWM);
+  } else {
+    digitalWrite(AIN1, LOW);
+    digitalWrite(AIN2, HIGH);
     analogWrite(PWMA, -PWM);
   }
 }

@@ -39,8 +39,6 @@ void setup()
     labyrinth();
   }
 
-  
-
 }
 
 void loop()
