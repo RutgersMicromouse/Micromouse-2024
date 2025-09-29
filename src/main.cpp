@@ -28,7 +28,7 @@ void setup()
   setForwardPWM(50);
   delay(500);
   initialize();
-  Serial.println("Hello world");
+  // Serial.println("Hello world");
 
   val = digitalRead(modePin);   // read the input pin
 
