@@ -18,7 +18,8 @@ void sensorInit() {
     Wire.setClock(400000); // use 400 kHz I2C
 
     // Disable/reset all sensors by driving their XSHUT pins low.
-    for (uint8_t i = 0; i < sensorCount; i++){
+    for (uint8_t i = 0; i < sensorCount; i++)
+    {
         pinMode(xshutPins[i], OUTPUT);
         digitalWrite(xshutPins[i], LOW);
     }
